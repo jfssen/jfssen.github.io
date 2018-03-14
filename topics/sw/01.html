@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Software: Basics</title>
+    <link rel="icon" type="image/png" href="http://i.imgur.com/fvTcZ24.png">
+    <meta name="description" content="Learn how to use arduinos."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../../style.css">
+  </head>
+
+  <body>
+    <nav id="topBar">
+      <ul>
+        <li class="current-menu-item"><a href="../../index.html">Homepage</a></li>
+        <li class="current-menu-item"><a href="https://www.arduino.cc/">Arduino</a></li>
+        <li class="current-menu-item"><a href="https://www.arduino.cc/en/Main/Software">IDE</a></li>
+        <li class="current-menu-item"><a href="../../PartDictionary.html">Part Dictionary</a></li>
+        <li><a href="">Hardware Tutorials</a>
+          <ul>
+            <li><a href="../../topics/hw/HWHome.html">Hardware Home</a></li>
+            <li><a href="../../topics/hw/01.html">Variables</a></li>
+            <li><a href="../../topics/hw/02.html">Arrays</a></li>
+            <li><a href="../../topics/hw/03.html">Motors & Sensors</a></li>
+            <li><a href="../../topics/hw/04.html">Robot</a></li>
+          </ul>
+        </li>
+        <li><a href="">Software Tutorials</a>
+          <ul>
+            <li><a href="SWHome.html">Software Home</a></li>
+            <li><a href="02.html">LED Flash</a></li>
+            <li><a href="03.html">Variables</a></li>
+            <li><a href="04.html">Arrays & Loops</a></li>
+            <li><a href="05.html">Motors & Sensors</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="main-content">
+    <p> </p>
+    <h2>Arduino Programming Basics</h2>
+    <h3>Preface:</h3>
+
+    <p>Before you start to code, there are some things that you should know about coding. The first things are functions; functions are areas of the code where tasks are assigned and each function has a specific task. There are two functions that we are going to use; <span style="background-color: #91f08e">void setup()</span> and <span style="background-color: #add8e6">void loop()</span>. void setup() is a function that executes once and will not execute again until the program resets (i.e. pressing the reset button on the Arduino). void loop() will continuously run as long as the program is running. These functions can only be used once in your program (you can’t have two <span style="background-color: #91f08e">void setup()</span> in one file). An example of the <span style="background-color: #91f08e">void setup()</span> function is below; </p>
+
+<div><pre class="highlight"><code><span style="background-color: #91f08e">void setup()</span>{//the word setup indicates that the code runs once
+ //code is written here
+}//always start and end the function with a curly bracket; any code in between these brackets will be executed by the function </code></pre></div>
+
+    <p>The following is an example of <span style="background-color: #add8e6">void loop</span>; it’s like <span style="background-color: #91f08e">void setup()</span> except the code will continue to execute while the Arduino is on (it loops over and over, hence the name)</p>
+
+<div><pre class="highlight"><code><span style="background-color: #add8e6">void loop()</span>{//the word loop indicates that the code is continuously ran
+ //code is written here
+}//always start and end the function with a curly bracket</code></pre></div>
+
+    <p>Now you might be wondering why I used <b>two backslashes</b> in the last example before my notes: this is because to <b>comment out code</b> you use two backslashes. Anything after the two backslashes will not be considered code and the program will ignore it. For example if I write:</p>
+    <div><pre class="highlight"><code><span style="background-color: #e2d0bd">//</span><span style="background-color: #add8e6">void loop</span>{
+<span style="background-color: #e2d0bd">//</span>}</code></pre>
+</div>
+    <p>Then the program will not detect the <span style="background-color: #add8e6">void loop</span>. It is convention to write what a line of code means in a comment every few lines, so when a third party reads your code they can understand it.</p>
+    <p>The order that you write code is very important because it determines the order that the computer will use when executing instructions. Code written at the top will occur before code written at the bottom. This means that you should write it in order from what you want it to do first to what you want it to do last. Keep this in mind because many beginner programmers encounter errors because their code was not written in order.</p>
+    <p>Another important part of code are <b>semicolons</b>. <b>All lines of code have to end with a semicolon</b> with three exceptions; functions (which are explained above), if statements (which are explained below) and loops (which will be explained later).</p>
+    <p>Naming is also an important convention when coding. When naming variables (which we will get into in a future tutorial), make sure you use something related to its purpose. Since <b>you cannot use whitespace in the name of a variable</b>, it is important to use a variable naming convention that is consistent throughout your code. There are two main naming methods; <span style="background-color: #DCC6E0">camelCase</span> and <span style="background-color: #f67e2c">underscores</span>. <span style="background-color: #DCC6E0">camelCase</span> is a method where the words used in a variable name is distinguished by using capital letters. The first letter in the variable name is left uncapitalized. Any additional words have their first letter capitalized. For example; if I wanted to use the words  “the number four” as a variable name, I would write <span style="background-color: #DCC6E0">“theNumberFour”</span> as the variable name. <span style="background-color: #f67e2c">Underscores </span> is a similar naming method, but the words are separated with an underscore (_) and the words aren’t capitalized. For example; if we wanted to use the phrase  “the number four” as a variable name, we would write <span style="background-color: #f67e2c">“the_number_four”</span>. We will be using underscores for these tutorials. </p>
+    <p>In order to keep your code readable, tabs and spaces are used to help organize and distinguish portions of code from each other. To automatically format your code, press the control key and the ‘t’ key. The image on the bottom left shows the code before it was formatted, and the image on the bottom right shows the image after control+t was pressed and the code was formatted.</p>
+    <img src="../../res/Stut1-1.png" alt="Created by the software group">
+    <img src="../../res/Stut1-2.png" alt="Created by the software group">
+    <p><span style="background-color: #add8e6">Equality statements</span> are statements that compare two things. There are six main <span style="background-color: #add8e6">equality statements</span>; >, >=, <, <=, ==, !=. The chart below explains what each of these symbols mean;</p>
+    <table style="width:100%">
+      <tr>
+        <th><b>Equality</b></th>
+        <th><b>Meaning</b></th>
+      </tr>
+      <tr>
+        <td> > </td>
+        <td>The term on the left is greater than the term on the right</td>
+      </tr>
+      <tr>
+        <td> >= </td>
+        <td>The term on the left is greater than or equal to the term on the right</td>
+      </tr>
+      <tr>
+        <td> < </td>
+        <td>The term on the left is less than the term on the right</td>
+      </tr>
+      <tr>
+        <td> <= </td>
+        <td>The term on the left is less than or equal to the term on the right</td>
+      </tr>
+      <tr>
+        <td> == </td>
+        <td>The term on the right is equal to the term on the left</td>
+      </tr>
+      <tr>
+        <td> != </td>
+        <td>The term on the left is not equal to the term on the right</td>
+      </tr>
+    </table>
+
+    <p>If statements are one of the most useful tools when coding. If statements are formatted as the following;</p>
+
+<div><pre class="highlight">
+<code>if (conditional) {
+  execute;
+}
+</code></pre></div>
+
+    <p>The word “conditional” is replaced with an <span style="background-color: #add8e6">equality statement</span>. An <span style="background-color: #add8e6">equality statement</span> compares two terms using an equality. The term execute is replaced with the code you want to run when the <span style="background-color: #add8e6">equality statement</span> is <span style="background-color: #e2d0bd">true</span>. The code below uses comments to explain this in detail;</p>
+
+<div><pre class="highlight"><code>if (<span style="background-color: #add8e6">4==4</span>){//if 4 equals 4 (this is always true in this case)
+ x = 4; // don't worry if you don't get this line of code. It will be explained in a future tutorial
+}//always end the if statement with a curly bracket</code></pre></div>
+
+    <p>After you have finished coding (and saving) you need to upload the code to your circuit. Before you upload, you should click the verify button (the <span style="background-color: #eb7f88">red circle</span> below). This button makes sure that your code works and that there isn’t any problems. All problems would be shown in the <b>black box</b> below the code (circled in white below). If there are no errors, plug your circuit into the computer and click upload (<b>the black circle</b>). This should upload your code to the Arduino and the Arduino should start to run according to your code.</p>
+    <img src="../../res/Stut1-4.png" alt="Created by the software group">
+    <p>In order to keep track of what the Arduino is doing while it is running, you can use the <b>Serial Monitor</b>. The <b>Serial Monitor</b> is an empty window that the Arduino can output values to when the Arduino is connected to a computer via USB. Click the button (circled in red) at the top right to open the <b>Serial Monitor</b>. To send something to this screen, use <span style="background-color: #e2d0bd">“Serial.println();”</span>. This code sends a line of text to the <b>Serial Monitor</b>. Place the text you want to send in between the brackets in quotation marks. For example; if I wanted to send the message “hello” to the <b>Serial Monitor</b>, I would type: <span style="background-color: #e2d0bd">“Serial.println(“1”);”</span> in <span style="background-color: #add8e6">void loop()</span>, the result should be the image below. This is a useful tool for figuring out bugs and errors in your program as you can view the current values of things such as sensor readings or variables by printing them out to the <b>Serial Monitor</b>.</p>
+    <img src="../../res/Stut1-5.png" alt="Created by the software group">
+    <img src="../../res/Stut1-6.png" alt="Created by the software group">
+
+    <p> </p>
+    <p><a href="02.html" class="btn">Next Tutorial</a></p>
+
+    <footer class="site-footer">
+        <span class="owner"><a href="https://github.com/jfssen/jfssen.github.io">Arduino Basics</a> is maintained by <a href="https://github.com/jfssen">jfssen</a>.</span>
+      <span class="credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+    </footer>
+  </section>
+  </body>
+</html>

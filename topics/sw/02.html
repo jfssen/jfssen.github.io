@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Software: Basic LED Flash</title>
+    <link rel="icon" type="image/png" href="http://i.imgur.com/fvTcZ24.png">
+    <meta name="description" content="Learn how to use arduinos."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../../style.css">
+  </head>
+
+  <body>
+    <nav id="topBar">
+      <ul>
+        <li class="current-menu-item"><a href="../../index.html">Homepage</a></li>
+        <li class="current-menu-item"><a href="https://www.arduino.cc/">Arduino</a></li>
+        <li class="current-menu-item"><a href="https://www.arduino.cc/en/Main/Software">IDE</a></li>
+        <li class="current-menu-item"><a href="../../PartDictionary.html">Part Dictionary</a></li>
+        <li><a href="">Hardware Tutorials</a>
+          <ul>
+            <li><a href="../../topics/hw/HWHome.html">Hardware Home</a></li>
+            <li><a href="../../topics/hw/01.html">Variables</a></li>
+            <li><a href="../../topics/hw/02.html">Arrays</a></li>
+            <li><a href="../../topics/hw/03.html">Motors & Sensors</a></li>
+            <li><a href="../../topics/hw/04.html">Robot</a></li>
+          </ul>
+        </li>
+        <li><a href="">Software Tutorials</a>
+          <ul>
+            <li><a href="SWHome.html">Software Home</a></li>
+            <li><a href="02.html">LED Flash</a></li>
+            <li><a href="03.html">Variables</a></li>
+            <li><a href="04.html">Arrays & Loops</a></li>
+            <li><a href="05.html">Motors & Sensors</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+
+    <section class="main-content">
+    <p> </p>
+    <h2>Basic LED Flash</h2>
+    <p> </p>
+
+   <p>This tutorial will detail how to create an LED light which will flash every second.</p>
+
+   <h3>Initializing inputs/outputs:</h3>
+
+   <p>Before we start, we have to tell the Arduino which pins to pins to make an output. To do this, we use a function called <span style="background-color: #add8e6">pinMode()</span>. <span style="background-color: #add8e6">pinMode()</span> <b>has 2 elements</b>; the pin you want to affect, and then a statement stating the mode of the pin. For example, let’s say we want to make pin 2 an output, then  we would write: </p>
+   <div><pre class="highlight"><code><span style="background-color: #add8e6">pinMode(2, OUTPUT);</span></code></pre>
+   </div>
+   <p>in void setup(). Now that you know how to initialize outputs. To do this, we use <span style="background-color: #DCC6E0">digitalWrite()</span>. digitalWrite() <b>has 2 elements</b>, the <b>first one tells the circuit what pin to look at</b>, the <b>second element will determine if it send voltage out(HIGH) or not(LOW)</b>. For example, if pin 2 was in output, then the line </p>
+   <div><pre class="highlight"><code><span style="background-color: #DCC6E0">digitalWrite(2, HIGH);</span></code></pre>
+   </div>
+   <p>would send voltage out of pin 2.</p>
+
+   <h3>Delay Function:</h3>
+   <p>Now lets explain the <span style="background-color: #eb7f88">delay()</span> function. This function (like it implies) <b>delays the next part of the code for the amount of time</b> in the brackets. The amount in the brackets is measured in milliseconds. So the following line:</p>
+   <div><pre class="highlight"><code><span style="background-color: #eb7f88">delay(1000)</span></code></pre>
+   </div>
+   <p>would make the program wait 1 second before executing the rest of the code.</p>
+
+   <h3>Getting Started:</h3>
+
+   <p>Now let’s start wiring the code. In void setup, make pin 13 an output. Then in void loop, send voltage out of pin 13, wait 1 second, then stop sending voltage out of pin 13. Put a delay of 1 second after you stop sending voltage out of pin 13. Your code should look like this:</p>
+
+   <div><pre class="highlight"><code>void setup() {
+ <span style="background-color: #add8e6">pinMode(13, OUTPUT);</span>
+}
+
+void loop() {
+ <span style="background-color: #DCC6E0">digitalWrite(13, HIGH);</span>
+ <span style="background-color: #eb7f88">delay(1000);</span>
+ <span style="background-color: #DCC6E0">digitalWrite(13, LOW);</span>
+ <span style="background-color: #eb7f88">delay(1000);</span>
+}
+   </code></pre>
+   </div>
+
+   <p>This program would make the LED flash, since once voltage is sent to pin 13, after 1 second passes voltage is stopped being sent. Then after 1 second this process repeats, making the voltage turn on and off every second.</p>
+
+<p> </p>
+    <p>
+      <a href="01.html" class="btn">Previous Tutorial</a>
+      <a href="03.html" class="btn">Next Tutorial</a>
+    </p>
+
+    <footer class="site-footer">
+        <span class="owner"><a href="https://github.com/jfssen/jfssen.github.io">Arduino Basics</a> is maintained by <a href="https://github.com/jfssen">jfssen</a>.</span>
+      <span class="credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+    </footer>
+  </section>
+  </body>
+</html>

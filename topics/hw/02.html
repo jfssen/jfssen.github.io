@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Hardware: Arrays</title>
+    <link rel="icon" type="image/png" href="http://i.imgur.com/fvTcZ24.png">
+    <meta name="description" content="Learn how to use arduinos."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../../style.css">
+  </head>
+
+  <body>
+    <nav id="topBar">
+      <ul>
+        <li class="current-menu-item"><a href="../../index.html">Homepage</a></li>
+        <li class="current-menu-item"><a href="https://www.arduino.cc/">Arduino</a></li>
+        <li class="current-menu-item"><a href="https://www.arduino.cc/en/Main/Software">IDE</a></li>
+        <li class="current-menu-item"><a href="../../PartDictionary.html">Part Dictionary</a></li>
+        <li><a href="">Hardware Tutorials</a>
+          <ul>
+            <li><a href="HWHome.html">Hardware Home</a></li>
+            <li><a href="01.html">Variables</a></li>
+            <li><a href="02.html">Arrays</a></li>
+            <li><a href="03.html">Motors & Sensors</a></li>
+            <li><a href="04.html">Robot</a></li>
+          </ul>
+        </li>
+        <li><a href="">Software Tutorials</a>
+          <ul>
+            <li><a href="../../topics/sw/SWHome.html">Software Home</a></li>
+
+            <li><a href="../../topics/sw/02.html">LED Flash</a></li>
+            <li><a href="../../topics/sw/03.html">Variables</a></li>
+            <li><a href="../../topics/sw/04.html">Arrays & Loops</a></li>
+            <li><a href="../../topics/sw/05.html">Motors & Sensors</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="main-content">
+      <p></p>
+    <h2></h2>
+
+    <h2>Arrays</h2>
+
+    <h3>Description:</h3>
+
+    <p>When you press one of the 4 buttons, the corresponding LED should turn on. When you press the button again, the corresponding LED should turn off.</p>
+    <p></p>
+
+    <h3>Important Notes:</h3>
+    <ul>
+      <li><b>All pins used in this project are <u>digital</u></b></li>
+      <p></p>
+    </ul>
+
+    <h3>Materials:</h3>
+
+    <ul style="list-style-type:disc">
+      <li>1x <a href="../../PartDictionary.html#Arduino">Arduino</a></li>
+      <li>1x <a href="../../PartDictionary.html#Breadboard">Breadboard</a></li>
+      <li>16x male-to-male <a href="../../PartDictionary.html#Wire">Jumper wires</a></li>
+      <li>8x 1k ohm <a href="../../PartDictionary.html#Resistor">resistors</a> (colour code: brown, black, red)</li>
+      <li>4x <a href="../../PartDictionary.html#PB">Push buttons</a></li>
+      <li>4x <a href="../../PartDictionary.html#LED">LED</a></li>
+    </ul>
+
+
+    <h3>Instructions:</h3>
+    <ol type="1">
+      <li>Orient the breadboard so that the smallest column number is on the left, and the greatest is on the right</li>
+      <p></p>
+      <li>Take a wire, connect one end of the wire to ground on the breadboard on one end and then connect the other end of the wire to ground on the opposite side of the breadboard </li>
+      <p></p>
+      <li>Take a wire, connect one end of the wire to positive on the breadboard on one end and then connect the other end of the wire to positive on the opposite side of the breadboard </li>
+      <p></p>
+      <li>Connect the 4 switches to the bridge of the board (S1: F1-E1/F3-E3, S2: F9-E9/F11-E11, S3: F16-E16/F18-E18. S4: F23-E23/F25-E25)</li>
+      <p></p>
+      <li>Connect four 1k ohm resistors from ground to each push button (S1: GND-J1, S2: GND-J9, S3: GND-J16, S4: GND-J23)</li>
+      <p></p>
+      <li>Take four wires and connect one end to Vcc and the other end to the push button (S1: Vcc-A3, S2: Vcc-A11, S3: Vcc-A18, S4: Vcc-A25)</li>
+      <p></p>
+      <li>Take four LED’s and connect them in between the switches (LED1: Negative E5-Positive E6, LED2: Negative E13-Positive E14, LED3: Negative E20-Positive E21, LED4: Negative E27-Positive E28)</li>
+      <p></p>
+      <li>Take four more 1k ohm resistors and connect them from ground to the negative side of each LED (LED1: GND-B5, LED2: GND-B13, LED3: GND-B20, LED4: GND-B27)</li>
+      <p></p>
+      <li>Take a wire and connect one end to the 5V power (on the arduino) and the other end to Vcc</li>
+      <p></p>
+      <li>Take a wire and connect one end to the GND on the digital side (of the arduino) and connect it to GND on the board</li>
+      <p></p>
+      <li>Take four wires and connect one side to the positive side of each LED to the arduino digital side (LED1: A6-Dig8, LED2: A14-Dig6, LED3: A21-Dig4, LED4: A28-Dig2)</li>
+      <p></p>
+      <li>Take another four wires and connect one side of the wire to one side of negative each switch to the arduino (S1: G1-Dig9, S2: G9-Dig7, S3: G16-Dig5, S4: G23-Dig3)</li>
+    </ol>
+
+    <h3>Schematic/Breadboard diagrams:</h3>
+
+    <img src="../../res/tut2-1.png" alt="Created by the hardware group Wayne, Anil and Hashir.">
+    <img src="../../res/tut2-2.png" alt="Created by the hardware group Wayne, Anil and Hashir.">
+
+    <h3>Demonstration:</h3>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ysMYlOWSdJY" frameborder="0" allowfullscreen></iframe>
+
+<p> </p>
+    <p>
+      <a href="01.html" class="btn">Previous Tutorial</a>
+      <a href="03.html" class="btn">Next Tutorial</a>
+    </p>
+      <a href="../../topics/sw/04.html" class="btn" >Related: Arrays Software Tutorial</a>
+
+    <footer class="site-footer">
+        <span class="owner"><a href="https://github.com/jfssen/jfssen.github.io">Arduino Basics</a> is maintained by <a href="https://github.com/jfssen">jfssen</a>.</span>
+      <span class="credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+    </footer>
+  </section>
+  </body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Hardware: Variables</title>
+    <link rel="icon" type="image/png" href="http://i.imgur.com/fvTcZ24.png">
+    <meta name="description" content="Learn how to use arduinos."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../../style.css">
+  </head>
+
+  <body>
+    <nav id="topBar">
+      <ul>
+        <li class="current-menu-item"><a href="../../index.html">Homepage</a></li>
+        <li class="current-menu-item"><a href="https://www.arduino.cc/">Arduino</a></li>
+        <li class="current-menu-item"><a href="https://www.arduino.cc/en/Main/Software">IDE</a></li>
+        <li class="current-menu-item"><a href="../../PartDictionary.html">Part Dictionary</a></li>
+        <li><a href="">Hardware Tutorials</a>
+          <ul>
+            <li><a href="HWHome.html">Hardware Home</a></li>
+            <li><a href="01.html">Variables</a></li>
+            <li><a href="02.html">Arrays</a></li>
+            <li><a href="03.html">Motors & Sensors</a></li>
+            <li><a href="04.html">Robot</a></li>
+          </ul>
+        </li>
+        <li><a href="">Software Tutorials</a>
+          <ul>
+            <li><a href="../../topics/sw/SWHome.html">Software Home</a></li>
+            <li><a href="../../topics/sw/02.html">LED Flash</a></li>
+            <li><a href="../../topics/sw/03.html">Variables</a></li>
+            <li><a href="../../topics/sw/04.html">Arrays & Loops</a></li>
+            <li><a href="../../topics/sw/05.html">Motors & Sensors</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+
+  <section class="main-content">
+      <p> </p>
+    <h2></h2>
+    <h2>Light & Variables</h2>
+
+    <h3>Description:</h3>
+
+    <p>When the arduino detects a signal from pin 1, the LED will turn on. When the arduino detects a signal from pin 2, the LED will turn off.</p>
+
+    <h3>Important Notes:</h3>
+    <ul>
+      <li><b>All pins used in this project are <u>digital</u></b></li>
+      <p></p>
+      <li><b>You may use a bigger breadboard like the one below</b></li>
+      <p></p>
+      <li><b>Battleship instructions refer to to coordinate system on the breadboard. For example, 5E (or E5) would be this hole in the breadboard:</b></li>
+    </ul>
+
+    <img src="../../res/bb.png" alt="StackOverflow user Caleb Kleveter">
+
+    <h3>Materials:</h3>
+
+    <ul style="list-style-type:disc">
+      <li>1x <a href="../../PartDictionary.html#Breadboard">Breadboard</a></li>
+      <li>7x Male to male <a href="../../PartDictionary.html#Wire">jumper wires</a></li>
+      <li>1x <a href="../../PartDictionary.html#PB">Buttons</a> or <a href="../../PartDictionary.html#">switches</a></li>
+      <li>1x <a href="../../PartDictionary.html#LED">LED</a></li>
+      <li>2x 1k ohm <a href="../../PartDictionary.html#Resistor">resistor</a> (brown, black, red)</li>
+      <li>1x <a href="../../PartDictionary.html#Arduino">Arduino uno</a></li>
+    </ul>
+
+
+    <h3>Instructions:</h3>
+    <ol type="1">
+      <li>Orient the breadboard so that the smallest column number is on the left, and the greatest is on the right.</li>
+      <p></p>
+      <li>Connect the two positive power rails together and the two negative power rails together. This should be done at the very end (edge) of the breadboard.</li>
+      <p></p>
+      <li>Connect the switch to the bridge of the breadboard (F3-F5 : E3-E5)</li>
+      <p></p>
+      <li>Connect one side of the switch to positive (G3 to Vcc) and a 1k resistor to negative (B5-Ground). Connect them in a diagonal pattern.</li>
+      <p></p>
+      <li>Take the arduino and connect the switch from the Vcc side (D5-Dig3) to Dig3 on the digital side (right side) of the arudino.</li>
+      <p></p>
+      <li>Connect the LED to the board (E28 positive side of LED, E27 negative side of LED) and connect the 1k resistor to the negative side of the LED (B27-Ground).</li>
+      <p></p>
+      <li>With a wire, Connect the positive end of the LED to Dig2 on the arduino (D28-Dig2).</li>
+      <p></p>
+      <li>Connect a wire from Vcc and connect it to the 5V on the analog side of the arduino (left side).</li>
+      <p></p>
+      <li>Connect the ground side of the breadboard to the digital ground side of the arduino (right side).</li>
+    </ol>
+    <h3>Schematic/Breadboard diagram:</h3>
+
+<img src="../../res/tut1.png" alt="Created by the hardware group Wayne, Anil and Hashir.">
+<img src="../../res/tut1-2.png" alt="Created by the hardware group Wayne, Anil and Hashir.">
+
+<h3>Demonstration:</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DXsfKZBK0AE" frameborder="0" allowfullscreen></iframe>
+
+<p> </p>
+      <a href="../../topics/sw/03.html" class="btn" >Related: Variables Software Tutorial</a>
+      <a href="02.html" class="btn">Next Tutorial</a>
+
+    <footer class="site-footer">
+        <span class="owner"><a href="https://github.com/jfssen/jfssen.github.io">Arduino Basics</a> is maintained by <a href="https://github.com/jfssen">jfssen</a>.</span>
+      <span class="credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+    </footer>
+  </section>
+  </body>
+</html>

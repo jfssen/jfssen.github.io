@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Hardware: Robot</title>
+    <link rel="icon" type="image/png" href="http://i.imgur.com/fvTcZ24.png">
+    <meta name="description" content="Learn how to use arduinos."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../../style.css">
+  </head>
+
+  <body>
+    <nav id="topBar">
+      <ul>
+        <li class="current-menu-item"><a href="../../index.html">Homepage</a></li>
+        <li class="current-menu-item"><a href="https://www.arduino.cc/">Arduino</a></li>
+        <li class="current-menu-item"><a href="https://www.arduino.cc/en/Main/Software">IDE</a></li>
+        <li class="current-menu-item"><a href="../../PartDictionary.html">Part Dictionary</a></li>
+        <li><a href="">Hardware Tutorials</a>
+          <ul>
+            <li><a href="HWHome.html">Hardware Home</a></li>
+            <li><a href="01.html">Variables</a></li>
+            <li><a href="02.html">Arrays</a></li>
+            <li><a href="03.html">Motors & Sensors</a></li>
+            <li><a href="04.html">Robot</a></li>
+          </ul>
+        </li>
+        <li><a href="">Software Tutorials</a>
+          <ul>
+            <li><a href="../../topics/sw/SWHome.html">Software Home</a></li>
+
+            <li><a href="../../topics/sw/02.html">LED Flash</a></li>
+            <li><a href="../../topics/sw/03.html">Variables</a></li>
+            <li><a href="../../topics/sw/04.html">Arrays & Loops</a></li>
+            <li><a href="../../topics/sw/05.html">Motors & Sensors</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="main-content">
+    <p></p>
+    <h2>Line Following Robot</h2>
+
+    <h3>Description:</h3>
+
+    <p>The robot will be following a track with a black line. When the sensor(s) see black, it will turn according to which sensor detected the black line. </p>
+    <p>The transistor from the previous tutorial, motors/sensors, have been replaced with the L293D motor driver. Like the transistor, the chip boosts the signal from the arduino, however, it can drive two motors at once  has and allows the motors to be operated backwards. This function may prove useful when you begin test your robot and it is unable to stay on the line.</p>
+
+    <h3>Important Notes:</h3>
+    <ul>
+      <li><b>All pins used in this project are <u>digital</u></b></li>
+      <p></p>
+      <li><b>The qti sensors are not on the breadboard, but they are connected to the breadboard with wires</b></li>
+      <p></p>
+      <li><b>The TIP120 sensors should be replaced by QTi Sensors in the breadboard schematic</b></li>
+      <p></p>
+      <li><b>The NPN transistors in the schematic should be replaced by QTi sensors (with the emitter replacing W, base replacing R, and the collector replacing B)</b></li>
+    </ul>
+
+    <h3>Materials:</h3>
+
+    <ul style="list-style-type:disc">
+    <li>22x Male to male <a href="../../PartDictionary.html#Wires">jumper wires</a></li>
+    <li>2x 10k ohm <a href="../../PartDictionary.html#Breadboard">resistors</a></li>
+    <li>2x <a href="../../PartDictionary.html#QTI">QTi sensor</a></li>
+    <li>1x <a href="../../PartDictionary.html#Arduino">Arduino uno</a></li>
+    <li>1x <a href="../../PartDictionary.html#Breadboard">Breadboard</a></li>
+    <li>1x L293D chip (motor driver chip)</li>
+    <li>2x geared motors</li>
+    <li>2x 1uF ceramic <a href="../../PartDictionary.html#Capacitor">capacitor</a></li>
+      </ul>
+
+
+    <h3>Before Starting:</h3>
+
+    <p>Solder the 1uF ceramic capacitors to the positive and negative pins of the motor, connecting the positive and negative ends of the motor together. After, solder a set of wires to the pins of the motors. </p>
+    <p>Also solder wires to the pins of the QTi sensors.</p>
+
+    <h3>Instructions:</h3>
+
+    <ol type="1">
+    <li>Take both QTI sensors and connect them to the board (QTI 1:B-C4 & W-C7, QTI 2: B-C13 & W-C15)</li>
+      <p></p>
+    <li>Take a wire and connect one end to Vcc and the other to Pin W on each QTI (QTI 1:Vcc-C7 QTI 2: Vcc-C15)</li>
+      <p></p>
+    <li>Take another wire and connect one end to GND and the other to Pin B on each QTI (QTI 1: GND-C4, QTI 2: GND-C13)</li>
+      <p></p>
+    <li>Take 2 10k Ohm resistors and connect them to Pin R on each QTI and the other end to Vcc (QTI 1:Vcc-A5, QTI 2:Vcc-A14)</li>
+      <p></p>
+    <li>Take 2 wires and connect one end to the digital pin of the arduino and the other end to Pin R on the QTI. Do the same for the second QTI however connect the other wire to Pin 3 (QTI1: Pdig2-B5, QTI2: Pdig3-B15)</li>
+      <p></p>
+    <li>Take the motor driver (L293D) and connect it to the breadboard (Pin1-E20,Pin8-E28,Pin9-F28,Pin16-F20)</li>
+      <p></p>
+    <li>Take a\2 wires and connect one wire to Pin 8 and to Pin 9 (E27-F27). The second wire connects Pins 1 to Pin 16 (D20-G20)</li>
+      <p></p>
+    <li>Take 2 wires and connect one wire from Pin 1 to Pin 8 and the other from Pin 9 to Pin 16 (B20-B27 & H27-H20)</li>
+      <p></p>
+    <li>Take a wire and connect one end from Pin 4 to Pin 13 (C23-G23)</li>
+      <p></p>
+    <li>Take 2 wires, connect one wire from Pin 4 to Pin 5 and the other from Pin 12 to Pin 13 (D23-D24 & I23-I24)</li>
+      <p></p>
+    <li>Take both motors and 4 wires and connect Motor 1 to Pin 3 and Pin 6 and Motor 2 to Pin 11 and Pin 14 (Motor1-A22 & A25,Motor2-J22 & J25). Orientation does not matter of the motor</li>
+      <p></p>
+    <li>Take 2 wires and connect one end from Vcc to Pin 9 and the other wire from GND to Pin 5 (GND-A24, Vcc-I27</li>
+      <p></p>
+    <li>Take a wire and connect Arduino DPin 9 and connect it to Pin 10 on the motor driver (Dpin9-G26)</li>
+      <p></p>
+    <li>Take a wire and connect Arduino DPin 10 and connect it to Pin 15 on the motor driver (Dpin10-G20)</li>
+      <p></p>
+    <li>Take a wire and connect Arduino DPin 11 and connect it to Pin 7 on the motor driver (Dpin11-D26)</li>
+      <p></p>
+    <li>Take a wire and connect Arduino DPin 12 and connect it to Pin 2 on the motor driver (Dpin12-A27)</li>
+      </ol>
+
+    <h3>Schematic/Breadboard diagrams:</h3>
+
+    <img src="../../res/tut4-1.png" alt="Created by the hardware group Wayne, Anil and Hashir.">
+    <img src="../../res/tut4-2.png" alt="Created by the hardware group Wayne, Anil and Hashir.">
+
+    <h3>Robot Assembly:</h3>
+
+    <p><b>Be creative! Try to come up with your own design for your robot. Some ideas include:</b></p>
+    <ul>
+      <li>Mounting the motors, sensors, and arduino to a breadboard</li>
+      <p></p>
+      <li>Using recycled materials (i.e. cardboard)</li>
+    </ul>
+
+    <p><b>Some things to consider when building your robot include:</b></p>
+    <ul>
+      <li>The distance between the QTi sensors</li>
+      <p></p>
+      <li>The weight of the robot</li>
+      <p></p>
+      <li>The addition of a third wheel (so the QTi sensors do not make contact with any surfaces)</li>
+      <p></p>
+      <li>Accessibility to circuit (makes it easier to troubleshoot)</li>
+    </ul>
+
+      <h3>An example of a completed robot:</h3>
+      <p><img src="../../res/Robot.png" alt="Created by the hardware group Wayne, Anil and Hashir."></p>
+
+      <h3>Demonstration:</h3>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/RYbPiUoMR2Q" frameborder="0" allowfullscreen></iframe>
+
+      <p> </p>
+      <a href="Bot_Assembly.pdf" class="btn">Bot Assembly.pdf</a>
+      <a href="03.html" class="btn">Previous Tutorial</a>
+
+    <footer class="site-footer">
+        <span class="owner"><a href="https://github.com/jfssen/jfssen.github.io">Arduino Basics</a> is maintained by <a href="https://github.com/jfssen">jfssen</a>.</span>
+      <span class="credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+    </footer>
+  </section>
+  </body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Software: Variables</title>
+    <link rel="icon" type="image/png" href="http://i.imgur.com/fvTcZ24.png">
+    <meta name="description" content="Learn how to use arduinos."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../../style.css">
+  </head>
+
+  <body>
+    <nav id="topBar">
+      <ul>
+        <li class="current-menu-item"><a href="../../index.html">Homepage</a></li>
+        <li class="current-menu-item"><a href="https://www.arduino.cc/">Arduino</a></li>
+        <li class="current-menu-item"><a href="https://www.arduino.cc/en/Main/Software">IDE</a></li>
+        <li class="current-menu-item"><a href="../../PartDictionary.html">Part Dictionary</a></li>
+        <li><a href="">Hardware Tutorials</a>
+          <ul>
+            <li><a href="../../topics/hw/HWHome.html">Hardware Home</a></li>
+            <li><a href="../../topics/hw/01.html">Variables</a></li>
+            <li><a href="../../topics/hw/02.html">Arrays</a></li>
+            <li><a href="../../topics/hw/03.html">Motors & Sensors</a></li>
+            <li><a href="../../topics/hw/04.html">Robot</a></li>
+          </ul>
+        </li>
+        <li><a href="">Software Tutorials</a>
+          <ul>
+            <li><a href="SWHome.html">Software Home</a></li>
+            <li><a href="02.html">LED Flash</a></li>
+            <li><a href="03.html">Variables</a></li>
+            <li><a href="04.html">Arrays & Loops</a></li>
+            <li><a href="05.html">Motors & Sensors</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="main-content">
+      <p> </p>
+      <h2>Variables</h2>
+      <p> </p>
+
+    <h3>Introduction:</h3>
+
+    <p>Like outputs, we have to tell the Arduino which pins to make an input. To do this, we use <span style="background-color: #add8e6">pinMode()</span> (just like we did for outputs). The only difference this time is that the second element in <span style="background-color: #add8e6">pinMode()</span> is going to state “<span style="background-color: #DCC6E0">INPUT</span>” instead of “<span style="background-color: #eb7f88">OUTPUT</span>”. For example, let’s say we want to make pin 3 an input, we would write: </p>
+
+    <div><pre class="highlight"><code> pinMode(3, <span style="background-color: #DCC6E0">INPUT</span>);</code></pre>
+    </div>
+    <p> in void setup(). To use an input, we use the function <span style="background-color: #20A8C2">digitalRead()</span> as well as an <span style="background-color: #f67e2c">if statement</span>. For <span style="background-color: #20A8C2">digitalRead()</span>, you put the pin that you want it to read in the brackets, if there is voltage going through it then the program would consider the pin “HIGH”, if there isn’t any voltage going through it, then it’s considered “LOW”. For example, if pin 3 was an input, then we use the line; </p>
+
+    <div><pre class="highlight"><code>if(digitalRead(3) == HIGH){</code></pre>
+    </div>
+    <p> then anything in the <span style="background-color: #f67e2c">if statement</span> would occur as long as there is voltage going to pin 3. </p>
+
+    <h3>Booleans:</h3>
+
+    <p>Now it’s time to talk <span style="background-color: #e2d0bd">booleans</span>, booleans are kind of like a light switch. If you turn them on, they will do an action (turn on the light) and if you turn them off they will do a different action (turn off the light). However, unlike a light switch we can make a boolean do anything we want if we turn it on (this is occur if the boolean is true) or off (this is occur if the boolean is false). To do this, in the lines before void setup we would write; </p>
+    <div><pre class="highlight"><code>
+    <span style="background-color: #e2d0bd">boolean</span> variable = false  </code></pre>
+  </div>
+    <p>with variable being a name that you can assign (it could be anything). While the name could be anything, it is convention to use something related to the function of the boolean. For example, if I wanted a boolean that would light up an LED if it is true then I would name the boolean lightUpLED, this is done for the sake of people who want to read your code in the future, and naming like this would help people recognize its function. </p>
+
+    <h3>Getting Started:</h3>
+
+    <p>Now let’s start writing the code:</p>
+    <p>Let’s create 2 booleans, 1 to make something happen only when the button if pressed, and another one to make the LED flash. Let's call the first one is_button_down, and the second one is_LED_on, make is_button_down equal false, and is_LED_on equal true. Then in setup(), make pin 3 an input and pin 2 and output. Your code should look like the following; </p>
+
+    <div><pre class="highlight"><code>    <span style="background-color: #e2d0bd">boolean</span> is_LED_on = true;
+    <span style="background-color: #e2d0bd">boolean</span> is_button_down = false;
+    void setup() {
+      pinMode(3, <span style="background-color: #DCC6E0">INPUT</span>);
+      pinMode(2, <span style="background-color: #eb7f88">OUTPUT</span>);
+    }  </code></pre>
+    </div>
+
+    <p> Now create a function called loop(),  in this the first thing we should do is determine what to do when is_LED_on is true. If it is true, then make pin 2 output voltage, it is false, make pin 2 stop outputting voltage. This section of the code would look like; </p>
+
+    <div><pre class="highlight"><code>  if(is_LED_on){
+    digitalWrite(2, HIGH);
+  }
+  else{
+    digitalWrite(2, LOW);
+  }  </code></pre>
+    </div>
+    <p>Now that we’ve said what happens when is_LED_on is true, let’s say what happens when is_button_down is true. When we do this, we will <span style="background-color: #add8e6">toggle</span> is_LED_on, to toggle it, we will use the NOT(!) operator. We will put the expression  “is_LED_on = !is_LED_on” in the <span style="background-color: #f67e2c">if statement</span> to toggle the LED. You would put this part of the code in void draw(), and it should look like this;</p>
+    <div><pre class="highlight"><code>if(is_button_down){
+      is_LED_on = !is_LED_on;
+  }
+    </code></pre>
+    </div>
+    <p>The final piece, is telling the program what to do when voltage goes to pin 3. To do this, we would use an <span style="background-color: #f67e2c">if statement</span>, in the brackets you would put “digitalRead(3) == HIGH”, and then in the <span style="background-color: #f67e2c">if statement</span> put “ is_button_down = true;”. This would make it so that if voltage goes into pin 3, then is_button_down becomes true. Then, using an else statement, make it so that is_button_down becomes false. This section of the code should look the following; </p>
+    <div><pre class="highlight"><code>  if(digitalRead(3) == HIGH){
+    is_button_down = true;
+  }
+  else{
+    is_button_down = false;
+  }  </code></pre>
+    </div>
+
+    <p> You’re done the first part of this tutorial! Right now, your code should look like the following; </p>
+
+    <div><pre class="highlight"><code>    boolean is_LED_on = true;
+    boolean is_button_down = false;
+
+    void setup() {
+      pinMode(3, INPUT);
+      pinMode(2, OUTPUT);
+    }
+    void loop(){
+      if(is_LED_on){
+        digitalWrite(2, HIGH);
+      }
+      else{
+        digitalWrite(2, LOW);
+      }
+      if(is_button_down){
+        is_LED_on = !is_LED_on;
+      }
+      if(digitalRead(3) == HIGH){
+        is_button_down = true;
+      }
+      else{
+        is_button_down = false;
+      }
+    }  </code></pre>
+    </div>
+
+    <h3>Variables:</h3>
+    <p>Now it’s time to use variables. Variables is good to use for changing parts of the code in fewer lines, as well as keeping track of ports. While it might be easy to keep track of what port is outputting right now, when the code becomes large, it’ll be extremely hard to keep track of the ports you’re using, and is why variables are useful. Variables could be anything, we’ve already used booleans (which is a type of variable), now we’re gonna use variables that are integers. To set th variables, you write </p>
+
+    <div><pre class="highlight"><code>int variable = integer</code></pre>
+    </div>
+    <p> in void setup(), where variable is the name of the variable (that you come up with) and integer is an integer value.</p>
+    <p> Modify your code so that right after you write the boolean names, you write “int button_pin = 3;” and “int LED_pin = 2;” Now replace every “2” in your code to “LED_pin” and every “3” in your code to “button_pin”. Your code should still function the same since the variables represent the numbers. And it should look like; </p>
+
+    <div><pre class="highlight"><code>int button_pin = 3;
+int LED_pin = 2;
+boolean is_LED_on = true;
+boolean is_button_down = false;
+
+void setup() {
+  pinMode(button_pin, INPUT);
+  pinMode(LED_pin, OUTPUT);
+}
+
+void loop() {
+  if(digitalRead(button_pin) == HIGH){
+    is_button_down = true;
+  }
+  else{
+    is_button_down = false;
+  }
+  if(is_button_down){
+      is_LED_on = !is_LED_on;
+    }
+  if(is_LED_on){
+      digitalWrite(LED_pin, HIGH);
+    }
+  else{
+      digitalWrite(LED_pin, LOW);
+    }
+}</code></pre>
+    </div>
+
+    <h3>Final Addition:</h3>
+
+    <p>Now add a new boolean called previous_is_button_down and make it false. Now, in void draw(), right before the line “if(is_button_down){“ write the following <span style="background-color: #f67e2c">if statement</span>; </p>
+
+    <div><pre class="highlight"><code>if(previous_is_button_down != is_button_down){</code></pre>
+    </div>
+    <p> Write the following line after the <span style="background-color: #f67e2c">if statement</span> (after the curly brackets); </p>
+    <div><pre class="highlight"><code>previous_is_button_down = is_button_down;    </code></pre>
+    </div>
+    <p> Now you might be confused as to why we have previous_is_button_down, this is to check if the button was recently pressed, and if it was it will toggle the light on and off (as is_LED_on toggles). For example, if the button isn’t pressed, then both previous_is_button_down and is_button_down are 0, but if it gets pressed then is_button_down becomes 1 and previous_is_button_down stays 0. This makes the <span style="background-color: #f67e2c">if statement</span> true, and therefore toggles the LED. Now you are done modifying the code, it should look like;</p>
+
+    <div><pre class="highlight"><code>int button_pin = 3;
+int LED_pin = 2;                          //on the arduino, connect the led to pin 2
+boolean is_LED_on = true;                 //boolean to keep track of if the LED is on
+boolean is_button_down = false;
+boolean previous_is_button_down = false;
+void setup() {
+  pinMode(button_pin, INPUT);             //set button as input
+  pinMode(LED_pin, OUTPUT);               //set led pin as output
+}
+
+// the loop routine runs over and over again forever:
+void loop() {
+  if(digitalRead(button_pin) == HIGH){    //check if the button is currently pressed down
+    is_button_down = true;
+  }
+  else{
+    is_button_down = false;
+  }
+
+  if(previous_is_button_down != is_button_down){
+    if(is_button_down){
+      is_LED_on = !is_LED_on;
+    }
+  }
+  previous_is_button_down = is_button_down;
+
+  if(is_LED_on){
+    digitalWrite(LED_pin, HIGH);           //output a high voltage through the LED pin
+  }
+  else{
+    digitalWrite(LED_pin, LOW);
+  }
+}    </code></pre>
+    </div>
+
+    <p> Now you’re done the tutorial, upload it to the corresponding hardware tutorial and try it out </p>
+
+<p> </p>
+    <p>
+      <a href="02.html" class="btn">Previous Tutorial</a>
+      <a href="04.html" class="btn">Next Tutorial</a>
+    </p>
+    <a href="../../topics/hw/01.html" class="btn">Related: Variables Hardware Tutorial</a>
+
+    <footer class="site-footer">
+        <span class="owner"><a href="https://github.com/jfssen/jfssen.github.io">Arduino Basics</a> is maintained by <a href="https://github.com/jfssen">jfssen</a>.</span>
+      <span class="credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+    </footer>
+  </section>
+  </body>
+</html>

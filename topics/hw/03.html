@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Hardware: Motors & Sensors</title>
+    <link rel="icon" type="image/png" href="http://i.imgur.com/fvTcZ24.png">
+    <meta name="description" content="Learn how to use arduinos."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../../style.css">
+  </head>
+
+  <body>
+    <nav id="topBar">
+      <ul>
+        <li class="current-menu-item"><a href="../../index.html">Homepage</a></li>
+        <li class="current-menu-item"><a href="https://www.arduino.cc/">Arduino</a></li>
+        <li class="current-menu-item"><a href="https://www.arduino.cc/en/Main/Software">IDE</a></li>
+        <li class="current-menu-item"><a href="../../PartDictionary.html">Part Dictionary</a></li>
+        <li><a href="">Hardware Tutorials</a>
+          <ul>
+            <li><a href="HWHome.html">Hardware Home</a></li>
+            <li><a href="01.html">Variables</a></li>
+            <li><a href="02.html">Arrays</a></li>
+            <li><a href="03.html">Motors & Sensors</a></li>
+            <li><a href="04.html">Robot</a></li>
+          </ul>
+        </li>
+        <li><a href="">Software Tutorials</a>
+          <ul>
+            <li><a href="../../topics/sw/SWHome.html">Software Home</a></li>
+
+            <li><a href="../../topics/sw/02.html">LED Flash</a></li>
+            <li><a href="../../topics/sw/03.html">Variables</a></li>
+            <li><a href="../../topics/sw/04.html">Arrays & Loops</a></li>
+            <li><a href="../../topics/sw/05.html">Motors & Sensors</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="main-content">
+      <p></p>
+    <h2></h2>
+
+    <h2>Motors & Sensors</h2>
+
+    <h3>Description:</h3>
+
+    <p>When the QTI is exposed to light, the motor will spin faster. When the QTI sensor is taken away from light, the motor will spin slower.</p>
+
+    <h3>Important Notes:</h3>
+    <ul>
+      <li><b><u>Analog</u> and <u>digital</u> pins are used in this project</b></li>
+      <p></p>
+      <li><b>On the schematic, the TIP120 should be replaced with a QTi sensor</b></li>
+      <p></p>
+      <li><b>When building the circuit, the transistor used should be a NPN transistor, not PNP</b></li>
+    </ul>
+
+    <h3>Materials:</h3>
+    <ul style="list-style-type:disc">
+      <li>1x <a href="../../PartDictionary.html#Arduino">Arduino uno</a></li>
+      <li>1x <a href="../../PartDictionary.html#Breadboard">Breadboard</a></li>
+      <li>1x <a href="../../PartDictionary.html#QTI">QTi sensor</a></li>
+      <li>9x male to male <a href="../../PartDictionary.html#Wire">jumper wires</a></li>
+      <li>1x <a href="../../PartDictionary.html#Transistor">2N3904 Transistor</a></li>
+    </ul>
+
+
+    <h3>Instructions:</h3>
+
+    <ol type="1">
+      <li>Connect the QTi to the breadboard (pin to the far left should be placed in slot E5 and the pin to the far right should be placed in E7
+*note - the TIP120 component on the schematic should be replaced by the QTi sensor</li>
+      <p></p>
+      <li>Take a wire, connect one end of the wire to the B pin on the QTi sensor (the pin closest to the left) and connect the other end to ground [negative]  (A5:ground/negative)</li>
+      <p></p>
+      <li>Take a wire, connect one end of the wire to the W pin on the QTi sensor ( the pin closest to the right) and connect the other end of the wire to positive [VCC] (A7:positive/VCC)</li>
+      <p></p>
+      <li>Take a wire, connect one end of the wire to the middle pin on the QTi sensor and connect the other end of the wire to pin 1 on the DIGITAL side on the arduino (A6:1)</li>
+      <p></p>
+      <li>Connect the motor to the breadboard (negative pin should be inputted into E15, positive pin should be inputted into E17)</li>
+      <p></p>
+      <li>Take a wire, connect one end to the breadboard ensuring that one end is connected to the negative side of the motor and the other end is connected to negative[ground] on the breadboard (A15:ground/negative)</li>
+      <p></p>
+      <li>Connect a transistor to the breadboard so that the left pin (emitter/E) is in pin E22 and the right pin (collector/C) is in pin E24.</li>
+      <p></p>
+      <li>Take a wire, connect one end of the wire to the positive side of the motor (D17) and connect the other end of the wire to  the emitter end of the transistor(D22)</li>
+      <p></p>
+      <li>Take a wire, Connect one end of the wire to the base pin of the transistor (A23) and connect the other end to pin A1 on the ANALOG side of the arduino.</li>
+      <p></p>
+      <li>Take a wire, connect one end to the emitter end of the transistor (A24) and the other end to positive/VCC on the breadboard</li>
+      <p></p>
+      <li>Take a wire, connect one end of the wire to positive [VCC] on the breadboard and connect the other end of the wire to 5V on the POWER side of the arduino</li>
+      <p></p>
+      <li>Take a wire, connect one end of the wire to ground on the breadboard and connect the other end of the wire to GND [ground] on the arduino </li>
+    </ol>
+
+
+    <h3>Schematic/Breadboard diagrams:</h3>
+
+    <img src="../../res/tut3-1.png" alt="Created by the hardware group Wayne, Anil and Hashir.">
+    <img src="../../res/tut3-2.png" alt="Created by the hardware group Wayne, Anil and Hashir.">
+
+    <h3>Demonstration:</h3>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/Ozn2abJ8EIQ" frameborder="0" allowfullscreen></iframe>
+
+<p> </p>
+    <p>
+      <a href="02.html" class="btn">Previous Tutorial</a>
+      <a href="04.html" class="btn">Next Tutorial</a>
+    </p>
+      <a href="../../topics/sw/05.html" class="btn" >Related: Motors & Sensors Software Tutorial</a>
+
+    <footer class="site-footer">
+        <span class="owner"><a href="https://github.com/jfssen/jfssen.github.io">Arduino Basics</a> is maintained by <a href="https://github.com/jfssen">jfssen</a>.</span>
+      <span class="credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+    </footer>
+  </section>
+  </body>
+</html>

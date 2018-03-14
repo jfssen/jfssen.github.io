@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Software: Inputs & Outputs</title>
+    <link rel="icon" type="image/png" href="http://i.imgur.com/fvTcZ24.png">
+    <meta name="description" content="Learn how to use arduinos."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../../style.css">
+  </head>
+
+  <body>
+    <nav id="topBar">
+      <ul>
+        <li class="current-menu-item"><a href="../../index.html">Homepage</a></li>
+        <li class="current-menu-item"><a href="https://www.arduino.cc/">Arduino</a></li>
+        <li class="current-menu-item"><a href="https://www.arduino.cc/en/Main/Software">IDE</a></li>
+        <li class="current-menu-item"><a href="../../PartDictionary.html">Part Dictionary</a></li>
+        <li><a href="">Hardware Tutorials</a>
+          <ul>
+            <li><a href="../../topics/hw/HWHome.html">Hardware Home</a></li>
+            <li><a href="../../topics/hw/01.html">Variables</a></li>
+            <li><a href="../../topics/hw/02.html">Arrays</a></li>
+            <li><a href="../../topics/hw/03.html">Motors & Sensors</a></li>
+            <li><a href="../../topics/hw/04.html">Robot</a></li>
+          </ul>
+        </li>
+        <li><a href="">Software Tutorials</a>
+          <ul>
+            <li><a href="SWHome.html">Software Home</a></li>
+            <li><a href="02.html">LED Flash</a></li>
+            <li><a href="03.html">Variables</a></li>
+            <li><a href="04.html">Arrays & Loops</a></li>
+            <li><a href="05.html">Motors & Sensors</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="main-content">
+    <p> </p>
+    <h2>Inputs & Outputs</h2>
+
+    <h3>Introduction:</h3>
+
+    <p>In this tutorial, we will learn how to read sensor values from a QTI sensor and move a motor based on the sensor readings.</p>
+
+    <p>Before we start, let’s explain the difference between these two things; analog and digital. Analog is a mode where the amount of voltage being outputted can be changed, while digital is only on or off.</p>
+
+    <p>For example; when we use <span style="background-color: #91f08e">digitalWrite</span>, we would write the port we are changing, then if it’s low or high (ex. <span style="background-color: #91f08e">digitalWrite (2,HIGH)</span>), but when using analog, the amount of voltage outputted can be changed from the minimum value (0) to the maximum value(255). To use analog, we would use an <span style="background-color: #DCC6E0">analog pin</span> in setup instead of a normal number (ex. pinMode(A1, OUTPUT)); <span style="background-color: #DCC6E0">analog pins</span> are numbered A0-A5.</p>
+
+    <p>We would use <span style="background-color: #e2d0bd">analogWrite</span> instead of <span style="background-color: #91f08e">digitalWrite</span> when we want to output through the pin. The format we follow to use <span style="background-color: #e2d0bd">analogWrite</span> is identical to the format we use for <span style="background-color: #91f08e">digitalWrite</span> with one small difference:</p>
+
+    <div><pre class="highlight"><code><span style="background-color: #e2d0bd">analogWrite</span>(<span style="background-color: #f67e2c">pin_number</span>, <span style="background-color: #add8e6">analog_value</span>);</code></pre>
+    </div>
+
+    <p>You specify the <span style="background-color: #f67e2c">pin_number</span> first and then the <span style="background-color: #add8e6">analog_value</span> second.</p>
+    <p>The <span style="background-color: #f67e2c">pin_number</span> has to be a <span style="background-color: #DCC6E0">analog pin</span></p>
+    <p>The <span style="background-color: #add8e6">analog_value</span> is a number between 0 to 255.</p>
+    <p>For example; we would write <span style="background-color: #e2d0bd">analogWrite (2, 255)</span> to have the same outcome as the digital example, if we wanted the motor to go at roughly half speed, we would write  <span style="background-color: #e2d0bd">analogWrite (2,128)</span> instead. Using analog enables us to change the speed of the robot and opens up a variety of different uses.</p>
+    <p>First, we will declare variables to hold the pin numbers for the QTI sensor and the motor:</p>
+    <div><pre class="highlight"><code>int sensor_pin = 2; //set the pin for the sensor
+int motor_pin = A1; //set the pin for the motor
+</code></pre>
+    </div>
+    <p>Next, we will write set the Serial monitor communication speed and the pin modes inside of the setup() function:</p>
+    <div><pre class="highlight"><code>void setup() {
+  Serial.begin(9600); //set how fast the arduino should communicate with the computer. This is
+used to determine how fast "Serial.println()" will output to the Serial Monitor
+  pinMode(sensor_pin, INPUT); //set sensor as input
+  pinMode(motor_pin, OUTPUT); //set motor as output
+}
+</code></pre>
+    </div>
+    <p>After finishing the setup() function, we will move onto the loop() function. Each time the loop() function runs, we want to read the value coming from the QTI sensor by using digitalRead() on the sensor_pin. We also want to print out the value of the reading to the Serial Monitor so that we can check the values ourselves to make sure the readings are correct.</p>
+    <div><pre class="highlight"><code>void loop() {
+  int sensor_value = digitalRead(sensor_pin); //retrieve the value detected by the sensor
+  Serial.println(sensor_value); //print out the values on the Serial Monitor (so you can check them yourself)
+</code></pre>
+    </div>
+
+    <p>After getting the value of the sensor, we check if the sensor value reading; if the reading is 1, then the sensor is detecting a low amount of light. If the reading is 0, then the sensor is detecting a high amount of light. In this case, we want to turn on the motor when the sensor detects low amounts of light:</p>
+    <div><pre class="highlight"><code>void loop() {
+  int sensor_value = digitalRead(sensor_pin); //retrieve the value detected by the sensor
+  Serial.println(sensor_value); //print out the values on the Serial Monitor (so you can check them yourself)
+
+   if(sensor_value == 1){ //if the sensor detects low amounts of light
+    analogWrite(motor_pin, 255); //turn the motor on
+  }
+  else{
+    analogWrite(motor_pin, 0); //turn the motor off
+  }
+
+}</code></pre>
+    </div>
+    <p>Since digitalRead() returns either 1 or 0, we check to see if the returned value is equal to 1; if it is 1, then we know that the sensor is detecting low amounts of light. </p>
+    <p>This program should now turn on the motor when the QTI sensor detects a low amount of light; the motor should turn off when the QTI sensor detects high amounts of light. </p>
+
+    <p> </p>
+    <p>
+      <a href="../../topics/hw/03.html" class="btn">Related: I/O Hardware Tutorial</a>
+      <a href="04.html" class="btn">Previous Tutorial</a>
+    </p>
+
+    <footer class="site-footer">
+        <span class="owner"><a href="https://github.com/jfssen/jfssen.github.io">Arduino Basics</a> is maintained by <a href="https://github.com/jfssen">jfssen</a>.</span>
+      <span class="credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+    </footer>
+  </section>
+  </body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Software: Loops & Arrays</title>
+    <link rel="icon" type="image/png" href="http://i.imgur.com/fvTcZ24.png">
+    <meta name="description" content="Learn how to use arduinos."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../../style.css">
+  </head>
+
+  <body>
+    <nav id="topBar">
+      <ul>
+        <li class="current-menu-item"><a href="../../index.html">Homepage</a></li>
+        <li class="current-menu-item"><a href="https://www.arduino.cc/">Arduino</a></li>
+        <li class="current-menu-item"><a href="https://www.arduino.cc/en/Main/Software">IDE</a></li>
+        <li class="current-menu-item"><a href="../../PartDictionary.html">Part Dictionary</a></li>
+        <li><a href="">Hardware Tutorials</a>
+          <ul>
+            <li><a href="../../topics/hw/HWHome.html">Hardware Home</a></li>
+            <li><a href="../../topics/hw/01.html">Variables</a></li>
+            <li><a href="../../topics/hw/02.html">Arrays</a></li>
+            <li><a href="../../topics/hw/03.html">Motors & Sensors</a></li>
+            <li><a href="../../topics/hw/04.html">Robot</a></li>
+          </ul>
+        </li>
+        <li><a href="">Software Tutorials</a>
+          <ul>
+            <li><a href="SWHome.html">Software Home</a></li>
+            <li><a href="02.html">LED Flash</a></li>
+            <li><a href="03.html">Variables</a></li>
+            <li><a href="04.html">Arrays & Loops</a></li>
+            <li><a href="05.html">Motors & Sensors</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="main-content">
+    <p> </p>
+    <h2>Arrays and Loops</h2>
+    <h3>Introduction:</h3>
+
+    <p>From the Variables Tutorial, we created a program where a single LED on a circuit could be controlled by a button; but what if we wanted to have 4 LED’s in the circuit controlled by 4 buttons? If we followed the structure of the previous program and duplicated it for 4 LED’s, we would end up repeating our code 4 times! So how can we change our program so that adding LED’s in the circuit would require less changes in the code? </p>
+
+    <h3>Arrays:</h3>
+    <p>Arrays is the answer: an array is a list of variables. If a <b>variable is a single box</b> that holds information, <b>an array is a line of boxes</b> where each box contains the same type of information. For example, an array of integers can <b>only</b> have integer variables. The boxes are lined up so that if you try to get the first variable in the array, you are looking inside the first box in the line. Here is a visualization of an array: </p>
+    <p>You can declare an array with a certain size; the size is fixed thereafter. You declare an array by following this format: </p>
+    <p> <span style="background-color: #add8e6">Type_of_variables_in_array</span>  <span style="background-color: #91f08e">Name_of_array</span> [<span style="background-color: #eb7f88">size_of_array</span>]; </p>
+
+    <p>You put the type of variable first, then the name of the array, then an opening square bracket, then the size of the array, then the closing bracket and semicolon. </p>
+    <p>So if I wanted to declare an array that can hold up to <span style="background-color: #eb7f88">5</span> <span style="background-color: #add8e6">boolean</span> variables, and I wanted to call the array <span style="background-color: #91f08e">my_array</span>, I would type: </p>
+
+    <div><pre class="highlight"><code>boolean my_array[5]; //I created an array that can hold 5 boolean variables </code></pre>
+    </div>
+
+    <p>	When you create an array, this way, the program allocates the space needed to hold those variables and <b>assigns all variables in the array a default value</b>. The default value depends on which type of variable is stored in the array. Here is a quick summary of default values for commonly used types: </p>
+
+    <table style="width:100%">
+      <tr>
+        <th>Type of Variable</th>
+        <th>Default Value</th>
+      </tr>
+      <tr>
+        <td>int, float, double, long</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>boolean</td>
+        <td>false</td>
+      </tr>
+    </table>
+
+    <p>Using the table above, this means that my_array actually holds 5 “false” values by default. </p>
+    <p>You can also initialize variables inside the array when declaring the array: </p>
+    <p> <span style="background-color: #add8e6">Type_of_variables_in_array</span>  <span style="background-color: #91f08e">Name_of_array</span>[] = {<span style="background-color: #e2d0bd">size_of_array</span>}; </p>
+    <p>So if I wanted to declare an array called my_array, that contains integers, and holds the values:</p>
+    <p>13, 29, 17, -33, in <b>that order</b>, I would type:</p>
+
+    <div><pre class="highlight"><code><span style="background-color: #add8e6">int</span> <span style="background-color: #91f08e">my_array[]</span> = {<span style="background-color: #e2d0bd">13, 29, 17, -33</span>}; //1st = 13, 2nd = 29, 3rd = 17, 4th = -33</code></pre>
+    </div>
+
+    <p>In order to access an variable in the array, you must tell the array the <b>position</b> of the variable. This position is called an <b>index</b>. Indexes start at 0; for example, to get the <b>first</b> variable in the array, your <b>index is 0</b>, to get the <b>second</b> variable in the array, your <b>index is 1</b>, and so on.</p>
+    <img src="../../res/Stut3-1.png" alt="StackOverflow user Caleb Kleveter">
+
+    <p>To access a variable in the array, you would type:</p>
+
+    <div><pre class="highlight"><code><span style="background-color: #91f08e">Name_of_array</span> = [<span style="background-color: #e2d0bd">index</span>];</code></pre>
+    </div>
+
+    <p>By typing this, you are referring to the variable in the array at the specified index. You can read or set this variable by following that format. </p>
+    <p>After declaring an array like this:</p>
+    <div><pre class="highlight"><code>int my_array[] = {13, 29, 17, -33};</code></pre>
+    </div>
+    <p>To <b>set</b> the <b>third</b> variable (<span style="background-color: #e2d0bd">index = 2</span>) in the array, “<span style="background-color: #91f08e">my_array</span>”,  to the value of <span style="background-color: #add8e6">5</span>, you would type:</p>
+    <div><pre class="highlight"><code><span style="background-color: #91f08e">my_array</span> <span style="background-color: #e2d0bd">[2]</span> = <span style="background-color: #add8e6">5</span>;</code></pre>
+    </div>
+    <p>“my_array” would now hold the values 13, 29, 5, -33 </p>
+    <p>If I wanted to <b>print</b> the <b>third</b> variable (<span style="background-color: #e2d0bd">index = 2</span>) in the array <span style="background-color: #91f08e">“my_array”</span> to the Serial Monitor: </p>
+    <div><pre class="highlight"><code>Serial.println(<span style="background-color: #91f08e">my_array</span>[<span style="background-color: #e2d0bd">2</span>]);  </code></pre>
+    </div>
+    <p>When you run the program, “my_array[2]” would retrieve the third variable; once the value of the variable is retrieved, this is the result:</p>
+    <div><pre class="highlight"><code>Serial.println(5); </code></pre>
+    </div>
+    <p>The monitor would now read → 5</p>
+    <h3>Applications of Arrays and Loops:</h3>
+    <p>So now that we know how to create an array, we can loop through all the variables in the array with a for loop.</p>
+    <p>Here is what it looks like:</p>
+    <div><pre class="highlight"><code> for(int i = 0; i < 5; i++){
+	//do something while the condition “i < 5” is met
+  }
+</code></pre>
+    </div>
+    <p>Let’s look at the for loop more closely:</p>
+    <div><pre class="highlight"><code><span style="background-color: #eb7f88">for</span>(<span style="background-color: #f67e2c">int i = 0;</span> <span style="background-color: #e2d0bd">i < 5</span>; <span style="background-color: #91f08e">i++</span>){
+	//do code here
+	Serial.println(“variable i : “ + i); //print value of i
+  }
+</code></pre>
+    </div>
+    <p> A <span style="background-color: #eb7f88">for</span> loop repeats code inside a set of curly braces until a certain condition is met. The for loop cycles like this: </p>
+    <p>1)Do the line of code in the first section of the for loop (<span style="background-color: #f67e2c">orange</span>)</p>
+    <p>2)Check if the condition is met (<span style="background-color: #e2d0bd">yellow</span>). If so, continue to step 3. Otherwise, exit for loop.</p>
+    <p>3)Run the code in between the curly braces I.e. between “ { “ and “ } “</p>
+    <p>4)Execute the line of code in the third section (<span style="background-color: #91f08e">green</span>) of the for loop</p>
+    <p>5)Go to step 2</p>
+
+    <p> The red part is the word “<span style="background-color: #eb7f88">for</span>” which indicates that the for statement begins; it is followed by an opening bracket, signalling that the next 3 parts of the for loop will be located between the opening and closing brackets. These 3 parts are separated by semicolons.  I.e. “ for (part1; part2; part3) “ </p>
+    <p> The first part (<span style="background-color: #f67e2c">orange</span>), you can write a line of code; this line will execute once before the for loop begins. This part is usually used to declare a variable and assign it a value. In this case, the integer variable “i” is declared and given a value of 0.</p>
+    <p> The second part (<span style="background-color: #e2d0bd">yellow</span>) is the condition that is checked each time in the loop. This condition can be understood as a boolean variable; if the condition is true, the code in between the curly braces is executed and the for loop repeats; otherwise, we exit the for loop. In this case, the loop will continue to repeat while “i” has a value that is less than 5. </p>
+    <p>The last part (<span style="background-color: #91f08e">green</span>) is what occurs after the curly bracketed code is executed. This code can be anything but is usually used to increment a variable; in this case, the variable “i” is incremented each time the for loop completes.</p>
+    <p>Looking at the code, we can now tell that the for loop will repeat 5 times; any code located in between the curly braces will be repeated 5 times. The Serial Monitor would output: </p>
+    <div><pre class="highlight"><code>variable i : 0
+variable i : 1
+variable i : 2
+variable i : 3
+variable i : 4
+</code></pre>
+  </div>
+
+  <p>We can see that the variable “i” can now act as an index for an array with 5 variables; the for loop would repeat until it has the value of 4, reaching the fifth position in an array. This means that if we alter the second part of the for loop (the condition), we can have the variable “i” act as an index for an array of any size. I.e. if the size of the array was 10, the condition would be “i < 10” so that the variable “i” will increment until it reaches 9, the last index of an array with 10 variables.</p>
+  <p>For example, this code:</p>
+  <div><pre class="highlight"><code>int my_array[] = {13, 29, 17, -33};
+int my_array_size = 4;
+for(int i = 0; i < my_array_size; i++){
+	Serial.println(my_array[i]); //print all variables in my_array
+}
+</code></pre>
+</div>
+<p>Would print this to the Serial Monitor:</p>
+
+<div><pre class="highlight"><code>13
+29
+17
+-33      </code></pre>
+    </div>
+
+
+    <h3>Implementation of Arrays:</h3>
+
+    <p>So now we want to implement arrays and for loops into the previous tutorial so that we can easily extend our code so it works for any number of LED’s and buttons. Instead of using integer variables to hold the button and LED pin numbers, we will use <b>integer arrays</b> so we can hold any number of buttons and pins. The first part of the code will look like this: </p>
+
+    <div><pre class="highlight">
+<code>int number_of_buttons = 4; //Assign this variable the number of buttons you are using.
+//This variable is used to initialize the boolean arrays below AND is used in the for loop.
+
+int button_pins[] = {<span style="background-color: #eb7f88">3</span>, <span style="background-color: #e2d0bd">5</span>, <span style="background-color: #add8e6">7</span>, <span style="background-color: #91f08e">9</span>};  //the first pin number in button_pins[] controls the
+//first pin number in LED_pins[], the 2nd pin number in button_pins[] controls to the
+//2nd pin number in LED_pins[], etc.
+int LED_pins[] =    {<span style="background-color: #eb7f88">2</span>, <span style="background-color: #e2d0bd">4</span>, <span style="background-color: #add8e6">6</span>, <span style="background-color: #91f08e">8</span>};
+</code></pre>
+    </div>
+
+    <p>Using this array declaration, we create an array for button pins and an array for LED pins. This will state that pins 3, 5, 7, 9 are connected to buttons and pins 2, 4, 6, 8 are connected to LED’s. We also want to have a variable that will tell us the number of buttons we are using in the circuit as well; in this case, there are 4 button/LED pairs. This variable will be used later on in the code. Once we finish writing the rest of the program, we will only need to modify this section of code if we want to change the number of LED’s and buttons (I.e. you only have to change these 3 variables: <b>number_of_buttons</b>, <b>button_pins</b> and <b>LED_pins</b>). </p>
+    <p>The order of the pin numbers in these arrays will determine which button is in control of which LED. For example, if we use the code above, the button connected to pin <span style="background-color: #eb7f88">3</span> will control the LED connected to pin <span style="background-color: #eb7f88">2</span>. Similarly, the button connected to pin <span style="background-color: #e2d0bd">5</span> will control the LED connected to pin <span style="background-color: #e2d0bd">4</span>, and so on.
+</p>
+
+<p>Next, we will create arrays to hold the current and previous state of the buttons like in the last tutorial:</p>
+<div><pre class="highlight">
+<code>//These arrays hold the same information as the tutorial
+boolean is_LED_on[number_of_buttons];
+boolean is_button_down[number_of_buttons];
+boolean previous_is_button_down[number_of_buttons];
+</code></pre>
+</div>
+
+<p>Here we declare the boolean arrays <b>is_LED_on</b>, <b>is_button_down</b>, and <b>previous_is_button_down</b>. These arrays are initialized to have a size that is equal to the number of buttons used in the circuit because for each button, we need to know if it is currently pressed down, if it was pressed down in the previous state, and if the LED is currently turned on. You can start to see that the main logic from the Variables Tutorial is retained in this Arrays Tutorial; the only difference is that we are now using arrays instead of variables to hold information. </p>
+
+<p>Now that we have declared all the necessary variables, we will now setup the pin modes in setup with the help of a for loop: </p>
+
+<div><pre class="highlight"><code>//the setup routine runs once when you press reset:
+void setup() {
+ for(int i = 0; i < number_of_buttons; i++){ //loop through all the buttons and led pins
+   int button_pin = button_pins[i];
+   pinMode(button_pin, INPUT); //set all button pins as inputs
+   
+   int LED_pin = LED_pins[i];
+   pinMode(LED_pin, OUTPUT); //set all LED pins as outputs
+ }
+}
+</code></pre>
+ </div>
+
+ <p>Since we are holding all of our button and LED pins in an array, we have to loop through the array and access all of the pins and then set them as inputs or outputs: </p>
+ <div><pre class="highlight"><code>for(int i = 0; i < number_of_buttons; i++){ //loop through all the buttons and led pins</code></pre>
+ </div>
+ <p>In order to loop through all the buttons, we declare a variable called “i” in the first part of the for loop and give it a value of 0. We will use this variable as the index for the array. </p>
+ <p> We set the condition “i < number_of_pins” in the second part so that we repeat the lines of code in between the curly braces until the index reaches the number of pins (which is also the end of the array). </p>
+ <p>In the third part of the for loop, we state that the variable “i” (the index) will be incremented by 1 each time the for loop repeats. This allows the variable “i” to go through values 0, 1, 2, 3… until it is equal to number_of_pins.</p>
+ <p>Now that we have a variable, “i”, that can act as an index for the arrays, we want to go through all the LED and button pins to set them as input/output: </p>
+ <div><pre class="highlight">
+<code>int button_pin = button_pins[i];
+pinMode(button_pin, INPUT); //set all button pins as inputs
+   
+int LED_pin = LED_pins[i];
+pinMode(LED_pin, OUTPUT); //set all LED pins as outputs
+</code></pre>
+ </div>
+ <p>Inside the for loop’s curly braces, we retrieve the variable at the “i” position in the <b>button_pins</b> array and store it inside an integer variable called <b>button_pin</b>. We then set the pinMode of button_pin as an input like we did in the Variables Tutorial. Similarly, we do the same thing for <b>LED_pins</b>, placing the pin number inside a variable called LED_pin and then setting the pinMode as an output. Once the for loop completes, all the pin numbers inside the button_pins array should now be set as “INPUT” and all the pin numbers inside the LED_pins array should now be set as “OUTPUT”. </p>
+
+ <p>Now that we have completed the setup portion of the program, we will move onto the main loop of the program:</p>
+ <div><pre class="highlight"><code>void loop() {
+ 
+ for(int i = 0; i < number_of_buttons; i++){ //loop through all the buttons
+   
+   if(digitalRead(button_pins[i]) == HIGH){ //check if the button is currently pressed down
+   is_button_down[i] = true;
+   }
+   else{
+     is_button_down[i] = false;
+   }
+ 
+   if(previous_is_button_down[i] != is_button_down[i]){ //toggle the light on/off ONLY when the button is FIRST pressed down
+     if(is_button_down[i]){
+       is_LED_on[i] = !is_LED_on[i]; //toggle the LED now
+     }
+   }
+   previous_is_button_down[i] = is_button_down[i];
+ 
+   //HIGH means that the pin on the Arduino has current going through
+   //LOW means that the pin on the Arduino does not have current going through
+  if(is_LED_on[i]){
+    digitalWrite(LED_pins[i], HIGH); //output a high voltage through the LED pin
+  }
+  else{
+   digitalWrite(LED_pins[i], LOW);
+  }
+ }
+}
+</code></pre>
+</div>
+
+<p>So inside of the loop() function, we will place a for loop that will go through all the button and LED pins, updating the state of the variables and LED’s. </p>
+<p>The for loop used here is identical to the for loop used in the setup function:</p>
+<div><pre class="highlight"><code>for(int i = 0; i < number_of_buttons; i++){ </code></pre>
+</div>
+
+<p>We can tell that the code inside the curly braces will be able to use the variable “i” as an index for the button_pins and LED_pins array. </p>
+<p>If you compare the code inside the curly braces to the code you wrote in the Variables Tutorial, you should note that they are both very similar because all the logic stays the same; the main difference is that you are retrieving and setting variables through arrays. </p>
+<p>If you think about the index variable “i” and how it is used in the for loop, you can figure out why the order of the pin numbers in button_pins and LED_pins determines which button controls which LED. </p>
+
+
+<h3>End Result:</h3>
+<p>The code should finally look like this:</p>
+
+<div><pre class="highlight"><code>/*
+This program turns a light on/off when it detects a button being pressed (the button toggles the light).
+This program works with any number of buttons/LED's.
+*/
+int number_of_buttons = 4; //VERY IMPORTANT => MUST HAVE CORRECT NUMBER of buttons here. This variable is used to initialize the boolean arrays below AND is used in the "for loop"
+int button_pins[] = {3, 5, 7, 9};  //the first pin number in button_pins[] controls the first pin number in LED_pins[], the 2nd pin number in button_pins[] controls to the 2nd pin number in LED_pins[], etc.
+int LED_pins[] =    {2, 4, 6, 8};
+
+boolean is_LED_on[number_of_buttons]; //These arrays hold the same information as the tutorial on variables ("Variables Tutorial")
+boolean is_button_down[number_of_buttons];
+boolean previous_is_button_down[number_of_buttons];
+
+// the setup routine runs once when you press reset:
+void setup() {
+ for(int i = 0; i < number_of_buttons; i++){ //loop through all the buttons and led pins
+   int button_pin = button_pins[i];
+   pinMode(button_pin, INPUT); //set all button pins as inputs
+   
+   int LED_pin = LED_pins[i];
+   pinMode(LED_pin, OUTPUT); //set all LED pins as outputs
+ }
+}
+
+// the loop routine runs over and over again forever:
+void loop() {
+ 
+ for(int i = 0; i < number_of_buttons; i++){ //loop through all the buttons
+   
+   if(digitalRead(button_pins[i]) == HIGH){ //check if the button is currently pressed down
+   is_button_down[i] = true;
+   }
+   else{
+     is_button_down[i] = false;
+   }
+ 
+   if(previous_is_button_down[i] != is_button_down[i]){ //toggle the light on/off ONLY when the button is FIRST pressed down
+     if(is_button_down[i]){
+       is_LED_on[i] = !is_LED_on[i]; //toggle the LED now
+     }
+   }
+   previous_is_button_down[i] = is_button_down[i];
+ 
+   //HIGH means that the pin on the Arduino has current going through
+   //LOW means that the pin on the Arduino does not have current going through
+  if(is_LED_on[i]){
+    digitalWrite(LED_pins[i], HIGH); //output a high voltage through the LED pin
+  }
+  else{
+   digitalWrite(LED_pins[i], LOW);
+  }
+ }
+}</code></pre>
+</div>
+
+<p> </p>
+    <p>
+      <a href="03.html" class="btn">Previous Tutorial</a>
+      <a href="05.html" class="btn">Next Tutorial</a>
+    </p>
+    <a href="../../topics/hw/02.html" class="btn">Related: Arrays Hardware Tutorial</a>
+
+    <footer class="site-footer">
+        <span class="owner"><a href="https://github.com/jfssen/jfssen.github.io">Arduino Basics</a> is maintained by <a href="https://github.com/jfssen">jfssen</a>.</span>
+      <span class="credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+    </footer>
+  </section>
+  </body>
+</html>
